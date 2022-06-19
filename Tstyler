@@ -1,0 +1,110 @@
+#!/bin/bash
+
+#echo $# # the num of args 
+
+#$@ all the args
+
+
+usage() {
+	
+	cat <<EOL 
+ 
+ Tstyler   : Tstyler is a text styler make your text Bold, italic, underlined. 
+
+ Attention : Don't input numbers since it will be left out anyways.
+		
+ Usage     : $0 [Options] <yourWord> 
+
+ Options   : 
+
+			 -v, --verbose : Verbose mode.
+			 
+			 -b : Bold.
+			 
+			 -i : italic.
+			 
+			 -u : underline.
+
+EOL
+	
+	}
+	
+NAN='^[0-9]+$'
+ 
+if [[ $# -lt 2 ]]; then 
+
+	usage
+fi
+
+for I in $@ ; do
+	
+	if [[ $I =~ $NAN ]]; then
+			 
+		echo "Error : you r input was a number so was removed ..."
+		exit 1
+	fi
+		
+done
+
+
+function tstyler {
+
+
+	BOLD=0
+
+	ITALIC=0
+
+	UNDERLINED=0
+
+	while true; do 
+
+		case $1 in 
+			
+			-b)
+				BOLD=1
+				shift 1 
+				;;
+			
+			-i) 
+				ITALIC=1
+				shift 1 
+				;;	
+					
+			-u)
+				UNDERLINED=1
+				shift 1 
+				;;		
+			
+			*)
+				break	
+				;;
+		
+		esac			
+				
+	done
+
+	echo $UNDERLINED
+
+
+	if [[ $ITALIC -eq 1 ]]; then
+		
+		echo -e "\e[3m$@\e[0m"
+		
+	fi 	
+
+	if [[ $BOLD -eq 1 ]]; then
+
+		echo -e "\e[1m$@\e[0m"
+		
+	fi
+
+	if [[ $UNDERLINED -eq 1 ]]; then
+
+		echo -e "\e[4m$@\e[0m"
+		
+	fi
+
+}
+
+tstyler "$@"
+
