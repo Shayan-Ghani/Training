@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#echo $# # the num of args 
+##$ is the num of args 
 
-#$@ all the args
+#$@ is all the args
 
 
 usage() {
@@ -82,8 +82,6 @@ function tstyler {
 		esac			
 				
 	done
-
-	echo $UNDERLINED
 
 
 	if [[ $ITALIC -eq 1 ]]; then
