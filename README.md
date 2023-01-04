@@ -1,6 +1,10 @@
-Hey there! this is a mini project out of third session bash concepts
+# Mini Bash
+
+Hey there! this is a mini bash project.
+
 Some of features used in this project :
-	1. Select
-	2. Function 
-	3. Case
+
+* Select
+* Function 
+* Case
 	
